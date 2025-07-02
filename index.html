@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <script src="https://embed.array.io/cms/array-web-component.js?appKey=3F03D20E-5311-43D8-8A76-E4B5D77793BD"></script>
+    <script src="https://embed.array.io/cms/array-account-enroll.js?appKey=3F03D20E-5311-43D8-8A76-E4B5D77793BD"></script>
+
+</head>
+<body>
+<array-account-enroll
+        appKey="3F03D20E-5311-43D8-8A76-E4B5D77793BD"
+        apiUrl="https://sandbox.array.io"
+        sandbox="true"
+        showQuickView="true"
+        firstName="DONALD"
+        lastName="BLAIR"
+        emailAddress="dblair@example.com"
+        phone="6660000001"
+        dobDay="20"
+        dobMonth="09"
+        dobYear="1939"
+        zipCode="78228"
+        state="TX"
+        city="SAN ANTONIO"
+        ssn="666285344"
+        streetAddress="3627 W POPLAR ST"
+></array-account-enroll>
+
+<script>
+    const el = document.querySelector('array-account-enroll');
+    el.addEventListener('success', (e) => {
+      const userToken = e.detail?.metadata?.['user-token'];
+      if (userToken) {
+        ArrayChannel.postMessage(JSON.stringify({ userToken }));
+      }
+    });
+</script>
+</body>
+</html>
