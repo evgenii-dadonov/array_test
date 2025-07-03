@@ -29,6 +29,15 @@
 ></array-account-enroll>
 
 <script>
+window.addEventListener("array-event", function arrayEvent(arrayEvent) {
+  const {
+    tagName, // the name of the component that emitted the event
+    event, // the name of the user action
+    metadata = {}, // Component-specific data
+  } = arrayEvent.detail;
+  console.log("component: " + tagName + "; user action: " + event);
+});
+    
     const el = document.querySelector('array-account-enroll');
     el.addEventListener('success', (e) => {
       const userToken = e.detail?.metadata?.['user-token'];
